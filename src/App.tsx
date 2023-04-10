@@ -1,9 +1,16 @@
-import React from 'react';
+import { useState } from 'react';
+import AnswerForm from './components/AnswerForm';
 
 function App() {
+  const [answerInput, setAnswerInput] = useState("");
+
   return (
     <div>
-      <h1>Cooper Website</h1>
+      <h1>Daily Jeopardy</h1>
+      <AnswerForm
+        answerInput={answerInput}
+        onAnswerInputChange={setAnswerInput}
+      />
     </div>
   );
 }
