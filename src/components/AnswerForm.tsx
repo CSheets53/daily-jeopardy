@@ -20,6 +20,7 @@ const AnswerForm = ({
     };
 
     const handleSubmit = () => {
+        // TODO: answer validation stuff!
         if (answerInput) {
             console.log(`You answered ${answerInput}`);
         } else {

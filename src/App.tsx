@@ -1,16 +1,10 @@
-import { useState } from 'react';
-import AnswerForm from './components/AnswerForm';
+import MainDisplay from './components/MainDisplay';
 
 function App() {
-  const [answerInput, setAnswerInput] = useState("");
-
   return (
     <div>
       <h1>Daily Jeopardy</h1>
-      <AnswerForm
-        answerInput={answerInput}
-        onAnswerInputChange={setAnswerInput}
-      />
+      <MainDisplay />
     </div>
   );
 }
