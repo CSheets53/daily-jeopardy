@@ -26,10 +26,10 @@ const Question = ({
 
     return (
         <div>
-            <h1>{categoryTitle}</h1>
+            <h1>Category: {categoryTitle}</h1>
             <h2>{question}</h2>
-            <h3>{questionDate}</h3>
-            <h3>{value}</h3>
+            <h3>Airdate: {questionDate}</h3>
+            <h3>Points: {value}</h3>
         </div>
     );
 }
