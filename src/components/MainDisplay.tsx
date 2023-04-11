@@ -4,13 +4,21 @@ import Question from "./Question";
 import { underscoreString } from "../util/StringUtils";
 
 const MainDisplay = () => {
-    const [answerInput, setAnswerInput] = useState('');
-    const [questionData, setQuestionData] = useState(null);
+    const correctMessage = "Correct!";
+    const incorrectMessage = "Incorrect!";
+
+    // api states
     const [loading, setLoading] = useState(true);
+    const [questionData, setQuestionData] = useState(null);
+
+    // user input states
+    const [answerInput, setAnswerInput] = useState('');
+    const [currentCensoredAnswer, setCurrentCensoredAnswer] = useState('');
+    const [numAttempts, setNumAttempts] = useState(0);
     const [resultMessage, setResultMessage] = useState('');
 
-    // there's probably a better name to use for this. basically just tracks when to call useEffect again
-    const [search, setSearch] = useState(false);
+    // tracks when to call useEffect again
+    const [callAgain, setCallAgain] = useState(false);
 
     // get question
     const getRandomQuestion = async () => {
@@ -23,7 +31,7 @@ const MainDisplay = () => {
     // want to call when page loads
     useEffect(() => {
         getRandomQuestion();
-    }, [search]);
+    }, [callAgain]);
 
     if (loading) {
         return <div>Fetching data...</div>;
@@ -36,15 +44,19 @@ const MainDisplay = () => {
 
     // the correct answer
     const { answer } = questionData;
-    const censoredAnswer = underscoreString(answer);
 
     const handleSubmit = () => {
         if (answerInput.toLocaleLowerCase() === String(answer).toLocaleLowerCase()) {
-            setResultMessage("Correct!");
+            setResultMessage(correctMessage);
         } else {
-            setResultMessage("Incorrect!");
+            setResultMessage(incorrectMessage);
+
+            // TODO: fill in letters that have been guessed
+            const censoredAnswer = underscoreString(answer);
+            setCurrentCensoredAnswer(censoredAnswer);
         }
 
+        setNumAttempts(numAttempts + 1);
         setAnswerInput('');
     };
 
@@ -52,7 +64,10 @@ const MainDisplay = () => {
         setAnswerInput('');
         setLoading(true);
         setResultMessage('');
-        setSearch(!search);
+        setNumAttempts(0);
+
+        // recalls the useEffect function
+        setCallAgain(!callAgain);
     }
 
     return (
@@ -60,14 +75,25 @@ const MainDisplay = () => {
             <Question
                 questionData={questionData}
             />
-            <p>{answer}</p>
-            <p>{censoredAnswer}</p>
+            {
+                (resultMessage === incorrectMessage) && (
+                    <div>
+                        <p>{currentCensoredAnswer}</p>
+                    </div>
+                )
+            }
             <AnswerForm
                 answerInput={answerInput}
                 onSubmit={handleSubmit}
                 onAnswerInputChange={setAnswerInput}
             />
-            {resultMessage && <p>{resultMessage}</p>}
+            {
+                resultMessage && (
+                <div>
+                    <p>{resultMessage}</p>
+                    <p>{numAttempts} Attempts</p>
+                </div>)
+            }
             <button onClick={resetQuestion}>Get new question</button>
         </>
     );
