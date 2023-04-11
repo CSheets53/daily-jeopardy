@@ -23,7 +23,7 @@ const MainDisplay = () => {
 
     // get question
     const getRandomQuestion = async () => {
-        const response = await fetch("http://jservice.io/api/random");
+        const response = await fetch("https://jservice.io/api/random");
         const data = await response.json();
         setQuestionData(data[0]);
         setLoading(false);
@@ -41,7 +41,13 @@ const MainDisplay = () => {
     // want to call when page loads
     useEffect(() => {
         resetStates();
-        getRandomQuestion();
+
+        try {
+            getRandomQuestion();
+        } catch (e) {
+            // TODO: more robust error handling
+            console.log("Error fetching data.");
+        }
     }, [callAgain]);
 
     if (loading) {
