@@ -1,11 +1,13 @@
 export interface AnswerFormProps {
     answerInput: string;
     onAnswerInputChange: any;
+    onSubmit: any;
 }
 
 const AnswerForm = ({
     answerInput,
     onAnswerInputChange,
+    onSubmit
 }: AnswerFormProps) => {
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         onAnswerInputChange(e.target.value);
@@ -15,19 +17,8 @@ const AnswerForm = ({
         if (e.code === "Enter") {
             // make sure page doesn't reload
             e.preventDefault();
-            handleSubmit();
+            onSubmit();
         }
-    };
-
-    const handleSubmit = () => {
-        // TODO: answer validation stuff!
-        if (answerInput) {
-            console.log(`You answered ${answerInput}`);
-        } else {
-            console.log("You said nothing.");
-        }
-
-        onAnswerInputChange("");
     };
 
     return (
