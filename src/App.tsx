@@ -5,6 +5,7 @@ function App() {
     <div>
       <h1>Daily Jeopardy</h1>
       <MainDisplay />
+      <footer>Made by Cooper Sheets. <a href="https://github.com/CSheets53/daily-jeopardy">GitHub</a></footer>
     </div>
   );
 }

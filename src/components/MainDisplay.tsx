@@ -84,6 +84,7 @@ const MainDisplay = () => {
     }
 
     // TODO: make the conditionals neater by extracting to components
+    // TODO: dynamic display for number of attempts (i.e. attempt vs attempts)
     return (
         <>
             <Question
@@ -115,7 +116,7 @@ const MainDisplay = () => {
                 resultMessage && (
                 <div>
                     <p>{resultMessage}</p>
-                    <p>{numAttempts} Attempts</p>
+                    <p>{numAttempts} Attempt(s)</p>
                 </div>)
             }
 
