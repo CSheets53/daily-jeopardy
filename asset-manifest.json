@@ -1,12 +1,12 @@
 {
   "files": {
-    "main.js": "/daily-jeopardy/static/js/main.82555e5a.js",
+    "main.js": "/daily-jeopardy/static/js/main.c14be580.js",
     "static/js/787.a14e8e56.chunk.js": "/daily-jeopardy/static/js/787.a14e8e56.chunk.js",
     "index.html": "/daily-jeopardy/index.html",
-    "main.82555e5a.js.map": "/daily-jeopardy/static/js/main.82555e5a.js.map",
+    "main.c14be580.js.map": "/daily-jeopardy/static/js/main.c14be580.js.map",
     "787.a14e8e56.chunk.js.map": "/daily-jeopardy/static/js/787.a14e8e56.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.82555e5a.js"
+    "static/js/main.c14be580.js"
   ]
 }
